@@ -16,4 +16,18 @@ router.post("/", async (req, res) => {
   res.json(savedCustomer);
 });
 
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const result = await Customer.findById(id);
+  res.send(result);
+});
+
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const result = await Customer.deleteOne({ _id: id });
+  res.send(result);
+});
+
 module.exports = router;
