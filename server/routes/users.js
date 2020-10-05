@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const User = require("../model/User");
+const Customer = require("../model/Customer");
 
 router.get("/", async (req, res) => {
   const user = await User.find();
@@ -34,6 +35,12 @@ router.delete("/:id", async (req, res) => {
 
   const result = await User.deleteOne({ _id: id });
   res.send(result);
+});
+
+router.get("/:id/customers", async (req, res) => {
+  const id = req.params.id;
+
+  Customer.find({ created_by: id });
 });
 
 module.exports = router;

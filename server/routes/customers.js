@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Customer = require("../model/Customer");
+const User = require("../model/User");
 
 router.get("/", async (req, res) => {
   const customer = await Customer.find();
@@ -9,11 +10,21 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   console.log("POSTing customer");
-  const { name } = req.body;
+  const { name, created_by } = req.body;
 
-  const customer = new Customer({ name });
-  const savedCustomer = await customer.save();
-  res.json(savedCustomer);
+  const customer = new Customer({ name, created_by });
+  await customer
+    .save()
+    .then(async (customer) => {
+      const user = await User.findById(created_by);
+      user.customers.push(customer.id);
+      user.save();
+      return customer;
+    })
+    .then((customer) => {
+      res.json(customer);
+    })
+    .catch((err) => res.status(400).send(err));
 });
 
 router.get("/:id", async (req, res) => {
