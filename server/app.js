@@ -17,5 +17,6 @@ mongoose
   .catch(console.error);
 
 app.use("/customers", require("./routes/customers"));
+app.use("/users", require("./routes/users"));
 
 app.listen(8080);
