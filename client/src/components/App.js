@@ -13,22 +13,18 @@ export default function App() {
 
   return (
     <Layout style={{ minWidth: "100vw", minHeight: "100vh" }}>
-      <Sider
-        collapsible
-        collapsed={sidebarCollapsed}
-        onCollapse={onCollapse}
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-        }}
-      >
-        <div className="logo" />
+      <Sider collapsible collapsed={sidebarCollapsed} onCollapse={onCollapse}>
+        <div
+          style={{
+            height: "32px",
+            background: "rgba(255, 255, 255, 0.2)",
+            margin: "16px",
+          }}
+        />
         <Navigation />
       </Sider>
       <Layout>
-        <Header>Welcome</Header>
+        <Header style={{ background: "#fff" }}>Welcome</Header>
         <Content
           style={{
             margin: "24px 16px",
