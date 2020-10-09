@@ -1,0 +1,32 @@
+{
+  "name": "react-parcel-boilerplate",
+  "version": "1.0.0",
+  "description": "React Parcel Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "build": "npm test && parcel build public/index.html",
+    "test": "jest --coverage"
+  },
+  "author": "Garrit Franke",
+  "license": "MIT",
+  "dependencies": {
+    "@ant-design/icons": "^4.2.2",
+    "@types/jest": "^24.0.22",
+    "antd": "^4.6.6",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest": "^24.9.0",
+    "node-sass": "^4.13.1",
+    "parcel": "^1.12.4"
+  }
+}
