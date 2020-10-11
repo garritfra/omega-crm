@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Layout } from "antd";
 
 import Navigation from "./Navigation";
+import ClientsPage from "../pages/ClientsPage";
 
 const { Header, Content, Footer, Sider } = Layout;
 export default function App() {
@@ -32,7 +33,7 @@ export default function App() {
             minHeight: 280,
           }}
         >
-          <div>This will be the content</div>
+          <ClientsPage />
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Omega CRM ©2020 Created by Garrit Franke
