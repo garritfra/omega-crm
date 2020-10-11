@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { List, Card } from "antd";
+import { List, Avatar, Button } from "antd";
+import { PlusOutlined, UserAddOutlined, UserOutlined } from "@ant-design/icons";
 import ClientService from "../service/ClientService";
 
 export default function ClientsPage() {
@@ -12,22 +13,22 @@ export default function ClientsPage() {
     <div>
       <List
         dataSource={clients}
-        bordered
-        grid
-        header={<h2>Clients</h2>}
+        itemLayout="horizontal"
+        header={
+          <>
+            <h2>Clients</h2>
+            <Button type="primary" icon={<UserAddOutlined />}>
+              New
+            </Button>
+          </>
+        }
         renderItem={(item) => (
           <List.Item>
-            <Card
-              hoverable
-              title={item.name}
-              actions={[
-                <a href={"/clients/" + item.id} key="list-loadmore-edit">
-                  edit
-                </a>,
-              ]}
-            >
-              Card content
-            </Card>
+            <List.Item.Meta
+              avatar={<Avatar icon={<UserOutlined />} />}
+              title={<a href={"/clients/" + item.id}>{item.name}</a>}
+              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+            />
           </List.Item>
         )}
       ></List>
