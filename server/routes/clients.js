@@ -1,28 +1,28 @@
 const router = require("express").Router();
 
-const Customer = require("../model/Customer");
+const Client = require("../model/Client");
 const User = require("../model/User");
 
 router.get("/", async (req, res) => {
-  const customer = await Customer.find();
-  res.json(customer);
+  const client = await Client.find();
+  res.json(client);
 });
 
 router.post("/", async (req, res) => {
-  console.log("POSTing customer");
+  console.log("POSTing client");
   const { name, created_by } = req.body;
 
-  const customer = new Customer({ name, created_by });
-  await customer
+  const client = new Client({ name, created_by });
+  await client
     .save()
-    .then(async (customer) => {
+    .then(async (client) => {
       const user = await User.findById(created_by);
-      user.customers.push(customer.id);
+      user.clients.push(client.id);
       user.save();
-      return customer;
+      return client;
     })
-    .then((customer) => {
-      res.json(customer);
+    .then((client) => {
+      res.json(client);
     })
     .catch((err) => res.status(400).send(err));
 });
@@ -30,14 +30,14 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
 
-  const result = await Customer.findById(id);
+  const result = await Client.findById(id);
   res.send(result);
 });
 
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
-  const result = await Customer.deleteOne({ _id: id });
+  const result = await Client.deleteOne({ _id: id });
   res.send(result);
 });
 
