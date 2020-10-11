@@ -5,8 +5,7 @@ const app = express();
 
 app.use(require("body-parser").json());
 
-const cors = require("cors")({ origin: true });
-app.use(cors);
+app.use(require("cors")());
 
 mongoose
   .connect("mongodb://root:example@localhost:27017", {

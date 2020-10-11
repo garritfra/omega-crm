@@ -1,14 +1,19 @@
+import axios from "axios";
+
 export interface Client {
   id: string;
   name: string;
-  createdBy: any;
 }
 
 export default {
   getClients(): Promise<Client[]> {
-    return Promise.resolve([
-      { name: "Foo", createdBy: "me", id: "123" },
-      { name: "Bar Corp.", createdBy: "me", id: "qwe123" },
-    ]);
+    return axios
+      .get("http://localhost:8080/clients")
+      .then((res) => res.data)
+      .then((data) =>
+        data.map((client) => {
+          return { id: client._id, name: client.name };
+        })
+      );
   },
 };
