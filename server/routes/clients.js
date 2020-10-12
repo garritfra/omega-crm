@@ -4,19 +4,14 @@ const Client = require("../model/Client");
 const User = require("../model/User");
 
 router.get("/", async (req, res) => {
-  const client = await Client.find();
+  const client = await Client.find({ created_by: req.userId });
   res.json(client);
 });
 
 router.post("/", async (req, res) => {
-  console.log("POSTing client");
-  let { name, created_by } = req.body;
+  const { name } = req.body;
 
-  // Just for testing purposes. Attaches a random user as the owner of the client
-  if (!created_by) {
-    created_by = (await User.findOne())._id;
-    console.debug("CAUTION: Using random user as client owner:", created_by);
-  }
+  const created_by = await User.findOne({ _id: req.userId });
 
   const client = new Client({ name, created_by });
   await client
