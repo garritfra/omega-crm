@@ -15,6 +15,7 @@ mongoose
   .then(() => console.log("Database connected"))
   .catch(console.error);
 
+app.use("/auth", require("./routes/auth"));
 app.use("/clients", require("./routes/clients"));
 app.use("/users", require("./routes/users"));
 
