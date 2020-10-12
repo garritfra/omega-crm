@@ -1,0 +1,23 @@
+@startuml
+User "1" --o "n" Client
+User "1" --o "n" Project
+Client - Project
+
+class User {
+    String id
+    Client[] clients
+}
+
+class Client {
+    String id
+    String name
+    Project[] projects
+}
+
+class Project {
+    String id
+    String name
+    Client client
+}
+
+@enduml
