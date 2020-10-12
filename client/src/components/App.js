@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 
-import Navigation from "./Navigation";
+import Sidebar from "./Sidebar";
 import ClientsPage from "../pages/ClientsPage";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -22,7 +22,7 @@ export default function App() {
             margin: "16px",
           }}
         />
-        <Navigation />
+        <Sidebar />
       </Sider>
       <Layout>
         <Header style={{ background: "#fff" }}>Welcome</Header>
