@@ -20,7 +20,8 @@ router.post("/register", async (req, res) => {
   user
     .save()
     .then((user) => {
-      res.status(201).json({ id: user._id, email: user.email });
+      user.password = undefined;
+      res.status(201).json(user);
     })
     .catch((err) => res.status(400).json(err));
 });
@@ -38,6 +39,13 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ _id: user.id }, process.env.AUTH_SECRET);
 
   res.json({ status: "success", token, id: user.id });
+});
+
+router.get("/profile", async (req, res) => {
+  console.debug(req.userId);
+  let user = await User.findOne({ _id: req.userId });
+  user.password = undefined;
+  return res.json(user);
 });
 
 module.exports = router;

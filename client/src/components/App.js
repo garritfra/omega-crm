@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout } from "antd";
+import { Layout, Menu } from "antd";
 
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
@@ -27,7 +27,16 @@ export default function App() {
         <Sidebar activeItem={location} />
       </Sider>
       <Layout>
-        <Header style={{ background: "#fff" }}>Welcome</Header>
+        <Header style={{ background: "#fff" }}>
+          <Menu mode="horizontal" style={{ float: "right" }}>
+            <Menu.Item>
+              <a href="/login">Login</a>
+            </Menu.Item>
+            <Menu.Item>
+              <a href="/register">Register</a>
+            </Menu.Item>
+          </Menu>
+        </Header>
         <Content
           style={{
             margin: "24px 16px",

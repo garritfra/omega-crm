@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
   try {
     const verified = jwt.verify(token, process.env.AUTH_SECRET);
-    req.userId = verified;
+    req.userId = verified._id;
     next();
   } catch (err) {
     res.status(401).json(err);
