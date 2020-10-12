@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getKeyThenIncreaseKey } from "antd/lib/message";
+
+const basepath = process.env.API_BASE_PATH;
 
 export interface Client {
   id: string;
@@ -13,7 +14,7 @@ export interface NewClient {
 export default {
   getClients(): Promise<Client[]> {
     return axios
-      .get("http://localhost:8080/clients")
+      .get(basepath + "/clients")
       .then((res) => res.data)
       .then((data) =>
         data.map((client) => {
@@ -24,7 +25,7 @@ export default {
 
   addClient(client: NewClient): Promise<Client> {
     return axios
-      .post("http://localhost:8080/clients", client)
+      .post(basepath + "/clients", client)
       .then((res) => res.data)
       .then((client) => {
         return { ...client, id: client._id };
