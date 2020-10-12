@@ -10,7 +10,13 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   console.log("POSTing client");
-  const { name, created_by } = req.body;
+  let { name, created_by } = req.body;
+
+  // Just for testing purposes. Attaches a random user as the owner of the client
+  if (!created_by) {
+    created_by = (await User.findOne())._id;
+    console.debug("CAUTION: Using random user as client owner:", created_by);
+  }
 
   const client = new Client({ name, created_by });
   await client
