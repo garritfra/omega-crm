@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ClientsPage from "../pages/ClientsPage";
 import { Empty } from "antd";
 import NewClientPage from "../pages/NewClientPage";
+import LoginPage from "../pages/LoginPage";
 
 export default function Navigation() {
   return (
@@ -16,6 +17,9 @@ export default function Navigation() {
         </Route>
         <Route exact path="/clients/new">
           <NewClientPage />
+        </Route>
+        <Route exact path="/login">
+          <LoginPage />
         </Route>
       </Switch>
     </Router>

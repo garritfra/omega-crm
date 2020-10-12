@@ -28,7 +28,7 @@ export default {
       password,
     });
     const token = response.data.token;
-    document.cookie = token;
+    document.cookie = "token=" + token;
     return token;
   },
 };
