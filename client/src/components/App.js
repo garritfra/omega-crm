@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Layout } from "antd";
 
 import Sidebar from "./Sidebar";
-import ClientsPage from "../pages/ClientsPage";
+import Navigation from "./Navigation";
 
 const { Header, Content, Footer, Sider } = Layout;
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const location = window.location.pathname.split("/")[1];
 
   const onCollapse = (collapsed) => {
     setSidebarCollapsed(collapsed);
@@ -22,7 +24,7 @@ export default function App() {
             margin: "16px",
           }}
         />
-        <Sidebar />
+        <Sidebar activeItem={location} />
       </Sider>
       <Layout>
         <Header style={{ background: "#fff" }}>Welcome</Header>
@@ -33,7 +35,7 @@ export default function App() {
             minHeight: 280,
           }}
         >
-          <ClientsPage />
+          <Navigation />
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Omega CRM ©2020 Created by Garrit Franke

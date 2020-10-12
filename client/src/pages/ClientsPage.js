@@ -17,7 +17,11 @@ export default function ClientsPage() {
         header={
           <>
             <h2>Clients</h2>
-            <Button type="primary" icon={<UserAddOutlined />}>
+            <Button
+              type="primary"
+              href="/clients/new"
+              icon={<UserAddOutlined />}
+            >
               New
             </Button>
           </>
