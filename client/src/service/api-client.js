@@ -1,16 +1,14 @@
 /* Custom axios instance that adds the token to the headers, if existent */
-import axios from "axios"
+import axios from "axios";
+import UserManager from "./UserService";
 
 axios.interceptors.request.use(function (config) {
-    const cookie = document.cookie.split(";")
-        .filter(cookie => cookie.startsWith("token="))[0]
-    const token = cookie ?
-        cookie.replace("token=", "") : undefined
+  const token = UserManager.getToken();
 
-    if (token) {
-        config.headers.Authorization = "Bearer " + token;
-    }
-    return config;
+  if (token) {
+    config.headers.Authorization = "Bearer " + token;
+  }
+  return config;
 });
 
 export default axios;

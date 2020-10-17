@@ -53,8 +53,15 @@ router.post("/login", async (req, res) => {
 router.get("/profile", async (req, res) => {
   console.debug("Fetching profile for:", req.userId);
   let user = await User.findOne({ _id: req.userId });
-  user.password = undefined;
-  return res.json(user);
+
+  if (user) {
+    user.password = undefined;
+    return res.json(user);
+  } else {
+    const message = "User not found";
+    console.debug(message);
+    return res.status(404).send(message);
+  }
 });
 
 module.exports = router;

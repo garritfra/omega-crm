@@ -1,4 +1,3 @@
-import { LogoutOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const basepath = process.env.API_BASE_PATH;
@@ -47,5 +46,12 @@ export default {
 
     const user = response.data;
     return { id: user._id, fullName: user.full_name, email: user.email };
+  },
+  getToken(): string | undefined {
+    const cookie = document.cookie
+      .split(";")
+      .filter((cookie) => cookie.startsWith("token="))[0];
+    const token = cookie ? cookie.replace("token=", "") : undefined;
+    return token;
   },
 };

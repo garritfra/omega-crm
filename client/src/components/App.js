@@ -8,14 +8,15 @@ import UserService from "../service/UserService";
 const { Header, Content, Footer, Sider } = Layout;
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [user, setUser] = useState(false);
+  const [username, setUsername] = useState("");
+  const token = UserService.getToken();
 
   const location = window.location.pathname.split("/")[1];
 
   useEffect(() => {
-    UserService.getUser()
-      .then(setUser)
-      .catch(() => setUser(undefined));
+    if (token) {
+      UserService.getUser().then((user) => setUsername(user.fullName));
+    }
   }, []);
 
   const onCollapse = (collapsed) => {
@@ -44,9 +45,14 @@ export default function App() {
       <Layout>
         <Header style={{ background: "#fff" }}>
           <Menu mode="horizontal" style={{ float: "right" }}>
-            {user == false ? (
-              <></>
-            ) : user == undefined ? (
+            {token ? (
+              <>
+                <Menu.Item>
+                  <a href="/profile">{username}</a>
+                </Menu.Item>
+                <Menu.Item onClick={onLogout}>Log Out</Menu.Item>
+              </>
+            ) : (
               <>
                 <Menu.Item>
                   <a href="/login">Login</a>
@@ -54,13 +60,6 @@ export default function App() {
                 <Menu.Item>
                   <a href="/register">Register</a>
                 </Menu.Item>
-              </>
-            ) : (
-              <>
-                <Menu.Item>
-                  <a href="/profile">{user.fullName}</a>
-                </Menu.Item>
-                <Menu.Item onClick={onLogout}>Log Out</Menu.Item>
               </>
             )}
           </Menu>
