@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ClientsPage from "../pages/ClientsPage";
+import RegisterPage from "../pages/RegisterPage";
 import { Empty } from "antd";
 import NewClientPage from "../pages/NewClientPage";
 import LoginPage from "../pages/LoginPage";
@@ -20,6 +21,9 @@ export default function Navigation() {
         </Route>
         <Route exact path="/login">
           <LoginPage />
+        </Route>
+        <Route path="/register">
+          <RegisterPage />
         </Route>
       </Switch>
     </Router>

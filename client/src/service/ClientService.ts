@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./api-client";
 
 const basepath = process.env.API_BASE_PATH;
 

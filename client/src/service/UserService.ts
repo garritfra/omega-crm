@@ -31,4 +31,11 @@ export default {
     document.cookie = "token=" + token;
     return token;
   },
+
+  async register(email: string, password: string, fullName: string): Promise<User> {
+    const response = await axios.post(basepath + "/auth/register", { email, password, full_name: fullName });
+
+    const user = response.data
+    return { id: user._id, fullName: user.full_name, email: user.email }
+  }
 };
