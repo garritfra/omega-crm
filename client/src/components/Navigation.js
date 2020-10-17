@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ClientsPage from "../pages/ClientsPage";
+import ClientsPage from "../pages/ClientsListPage";
 import RegisterPage from "../pages/RegisterPage";
 import { Empty } from "antd";
 import NewClientPage from "../pages/NewClientPage";
