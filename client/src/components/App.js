@@ -1,17 +1,32 @@
-import React, { useState } from "react";
-import { Layout, Menu } from "antd";
+import React, { useEffect, useState } from "react";
+import { Layout, Menu, notification } from "antd";
 
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
+import UserService from "../service/UserService";
 
 const { Header, Content, Footer, Sider } = Layout;
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [user, setUser] = useState(false);
 
   const location = window.location.pathname.split("/")[1];
 
+  useEffect(() => {
+    UserService.getUser()
+      .then(setUser)
+      .catch(() => setUser(undefined));
+  }, []);
+
   const onCollapse = (collapsed) => {
     setSidebarCollapsed(collapsed);
+  };
+
+  const onLogout = () => {
+    notification.error({
+      message: "Not yet implemented",
+      description: "To log out, please clear the cookies",
+    });
   };
 
   return (
@@ -29,12 +44,25 @@ export default function App() {
       <Layout>
         <Header style={{ background: "#fff" }}>
           <Menu mode="horizontal" style={{ float: "right" }}>
-            <Menu.Item>
-              <a href="/login">Login</a>
-            </Menu.Item>
-            <Menu.Item>
-              <a href="/register">Register</a>
-            </Menu.Item>
+            {user == false ? (
+              <></>
+            ) : user == undefined ? (
+              <>
+                <Menu.Item>
+                  <a href="/login">Login</a>
+                </Menu.Item>
+                <Menu.Item>
+                  <a href="/register">Register</a>
+                </Menu.Item>
+              </>
+            ) : (
+              <>
+                <Menu.Item>
+                  <a href="/profile">{user.fullName}</a>
+                </Menu.Item>
+                <Menu.Item onClick={onLogout}>Log Out</Menu.Item>
+              </>
+            )}
           </Menu>
         </Header>
         <Content

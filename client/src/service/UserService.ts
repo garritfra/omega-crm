@@ -1,3 +1,4 @@
+import { LogoutOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const basepath = process.env.API_BASE_PATH;
@@ -10,6 +11,7 @@ export interface User {
 
 export default {
   async getUser(): Promise<User> {
+    console.debug("Getting user");
     const response = await axios.get(basepath + "/auth/profile", {
       headers: { Authorization: "Bearer " + document.cookie },
     });
@@ -32,10 +34,18 @@ export default {
     return token;
   },
 
-  async register(email: string, password: string, fullName: string): Promise<User> {
-    const response = await axios.post(basepath + "/auth/register", { email, password, full_name: fullName });
+  async register(
+    email: string,
+    password: string,
+    fullName: string
+  ): Promise<User> {
+    const response = await axios.post(basepath + "/auth/register", {
+      email,
+      password,
+      full_name: fullName,
+    });
 
-    const user = response.data
-    return { id: user._id, fullName: user.full_name, email: user.email }
-  }
+    const user = response.data;
+    return { id: user._id, fullName: user.full_name, email: user.email };
+  },
 };

@@ -2,8 +2,12 @@
 import axios from "axios"
 
 axios.interceptors.request.use(function (config) {
-    const token = document.cookie.split(";").filter(cookie => cookie.startsWith("token="))[0].replace("token=", "");
-    if (document.cookie) {
+    const cookie = document.cookie.split(";")
+        .filter(cookie => cookie.startsWith("token="))[0]
+    const token = cookie ?
+        cookie.replace("token=", "") : undefined
+
+    if (token) {
         config.headers.Authorization = "Bearer " + token;
     }
     return config;
