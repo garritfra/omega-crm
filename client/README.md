@@ -1,3 +1,5 @@
-# react-parcel-boilerplate
+## Configuration
 
-A minimal react boilerplate that uses parcel to bundle all of your assets
+To configure the client, you need these fields in your `.env` file:
+
+* API_BASE_PATH - Backend URL
