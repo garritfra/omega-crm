@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 mongoose
-  .connect("mongodb://root:example@localhost:27017", {
+  .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
