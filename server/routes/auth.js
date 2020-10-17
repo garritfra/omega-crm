@@ -6,7 +6,7 @@ const User = require("../model/User");
 
 router.post("/register", async (req, res) => {
   const { email, full_name, password } = req.body;
-  console.debug("Registering user:", email)
+  console.debug("Registering user:", email);
 
   if (await User.findOne({ email })) {
     res.status(400).send("Email already taken");
@@ -24,17 +24,20 @@ router.post("/register", async (req, res) => {
       user.password = undefined;
       res.status(201).json(user);
     })
-    .catch((err) => { console.log(err); res.status(400).json(err) });
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 router.post("/login", async (req, res) => {
-  console.debug("New login attempt:", req.body.email)
+  console.debug("New login attempt:", req.body.email);
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
   if (!user) {
-    console.debug("User not found")
+    console.debug("User not found");
     return res.status(400).send("Email or password incorrect");
   }
 
@@ -43,7 +46,7 @@ router.post("/login", async (req, res) => {
 
   const token = jwt.sign({ _id: user.id }, process.env.AUTH_SECRET);
 
-  console.debug("Login success for userId:", user.id)
+  console.debug("Login success for userId:", user.id);
   res.json({ status: "success", token, id: user.id });
 });
 
