@@ -31,8 +31,9 @@ export default function NewClientPage() {
             </Form.Item>
           </Col>
           <Col>
-            <Form.Item label="status" name="status" required>
-              <Select defaultValue="active">
+            <Form.Item label="status" name="status">
+              <Select defaultValue="">
+                <Option value="">Pick</Option>
                 <Option value="potential">
                   <Tag color="default">Potential</Tag>
                 </Option>
