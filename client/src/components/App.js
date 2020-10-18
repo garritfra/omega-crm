@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Menu, notification, Card, Breadcrumb } from "antd";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { Layout } from "antd";
 
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
-import UserService from "../service/UserService";
+import Header from "./Header";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Footer, Sider } = Layout;
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [username, setUsername] = useState("");
-  const token = UserService.getToken();
 
   const location = window.location.pathname.split("/")[1];
 
-  useEffect(() => {
-    if (token) {
-      UserService.getUser().then((user) => setUsername(user.fullName));
-    }
-  }, []);
-
   const onCollapse = (collapsed) => {
     setSidebarCollapsed(collapsed);
-  };
-
-  const onLogout = () => {
-    notification.error({
-      message: "Not yet implemented",
-      description: "To log out, please clear the cookies",
-    });
   };
 
   return (
@@ -44,27 +28,7 @@ export default function App() {
         <Sidebar activeItem={location} />
       </Sider>
       <Layout>
-        <Header style={{ background: "#fff" }}>
-          <Menu mode="horizontal" style={{ float: "right" }}>
-            {token ? (
-              <>
-                <Menu.Item>
-                  <a href="/profile">{username}</a>
-                </Menu.Item>
-                <Menu.Item onClick={onLogout}>Log Out</Menu.Item>
-              </>
-            ) : (
-              <>
-                <Menu.Item>
-                  <a href="/login">Login</a>
-                </Menu.Item>
-                <Menu.Item>
-                  <a href="/register">Register</a>
-                </Menu.Item>
-              </>
-            )}
-          </Menu>
-        </Header>
+        <Header />
         <Navigation />
         <Footer style={{ textAlign: "center" }}>
           Omega CRM ©2020 Created by Garrit Franke
