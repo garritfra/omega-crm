@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Descriptions,
   Timeline,
   Tag,
   Space,
@@ -18,6 +17,13 @@ export default function ClientPage({ id }) {
     ClientService.getClientById(id).then(setClient);
   }, []);
 
+  const statusTagMap = {
+    potential: { color: "default", text: "Potential" },
+    active: { color: "success", text: "Active" },
+    on_hold: { color: "purple", text: "On Hold" },
+    inactive: { color: "error", text: "Inactive" },
+  };
+
   return (
     <>
       <Space direction="vertical" size="large">
@@ -27,9 +33,23 @@ export default function ClientPage({ id }) {
             <List bordered split="true">
               <List.Item actions={[client.name]}>Name:</List.Item>
               <List.Item actions={[client.id]}>Identifier:</List.Item>
-              <List.Item actions={[<Tag color="error">Inactive</Tag>]}>
+              <List.Item
+                actions={[
+                  (() =>
+                    statusTagMap[client.status] ? (
+                      <Tag color={statusTagMap[client.status].color}>
+                        {statusTagMap[client.status].text}
+                      </Tag>
+                    ) : (
+                      <></>
+                    ))(),
+                ]}
+              >
                 Status:
               </List.Item>
+              <List.Item actions={[client.email]}>Email:</List.Item>
+              <List.Item actions={[client.address]}>Address:</List.Item>
+              <List.Item actions={[client.telephone]}>Telephone:</List.Item>
             </List>
           </Col>
           <Col>

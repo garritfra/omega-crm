@@ -9,11 +9,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name } = req.body;
+  const clientParams = req.body;
 
   const created_by = await User.findOne({ _id: req.userId });
 
-  const client = new Client({ name, created_by });
+  const client = new Client({ ...clientParams, created_by });
   await client
     .save()
     .then(async (client) => {

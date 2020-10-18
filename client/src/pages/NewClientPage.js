@@ -8,15 +8,9 @@ const { Option } = Select;
 export default function NewClientPage() {
   const history = useHistory();
   const onSubmit = (values) => {
-    console.log(values);
     ClientService.addClient(values).then((client) =>
       history.push("/clients/" + client.id)
     );
-  };
-
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
   };
   const tailLayout = {
     wrapperCol: { offset: 8, span: 4 },
@@ -37,8 +31,8 @@ export default function NewClientPage() {
             </Form.Item>
           </Col>
           <Col>
-            <Form.Item label="status" name="status">
-              <Select>
+            <Form.Item label="status" name="status" required>
+              <Select defaultValue="active">
                 <Option value="potential">
                   <Tag color="default">Potential</Tag>
                 </Option>
@@ -48,7 +42,7 @@ export default function NewClientPage() {
                 <Option value="on_hold">
                   <Tag color="purple">On Hold</Tag>
                 </Option>
-                <Option value="inavtive">
+                <Option value="inactive">
                   <Tag color="error">Inactive</Tag>
                 </Option>
               </Select>
