@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { List, Avatar, Button } from "antd";
-import { PlusOutlined, UserAddOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { UserAddOutlined, UserOutlined } from "@ant-design/icons";
 import ClientService from "../service/ClientService";
 
 export default function ClientsPage() {
@@ -30,7 +31,7 @@ export default function ClientsPage() {
           <List.Item>
             <List.Item.Meta
               avatar={<Avatar icon={<UserOutlined />} />}
-              title={<a href={"/clients/" + item.id}>{item.name}</a>}
+              title={<Link to={"/clients/" + item.id}>{item.name}</Link>}
               description="Ant Design, a design language for background applications, is refined by Ant UED Team"
             />
           </List.Item>

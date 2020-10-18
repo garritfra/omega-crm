@@ -1,11 +1,13 @@
 import React from "react";
 import { Form, Input, Button, Card } from "antd";
 import ClientService from "../service/ClientService";
+import { useHistory } from "react-router-dom";
 
 export default function NewClientPage() {
+  const history = useHistory();
   const onSubmit = (values) => {
-    ClientService.addClient(values).then(
-      (client) => (window.location = "/clients/" + client.id)
+    ClientService.addClient(values).then((client) =>
+      history.push("/clients/" + client.id)
     );
   };
 

@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Form, Input, Button, Alert } from "antd";
 import UserService from "../service/UserService";
 import ErrorBoundary from "antd/lib/alert/ErrorBoundary";
+import { useHistory } from "react-router-dom";
 
 export default function LoginPage() {
   const [error, setError] = useState();
+  const history = useHistory();
 
   const onSubmit = ({ email, password }) => {
     UserService.login(email, password)
-      .then(() => (window.location = "/users/profile"))
+      .then(() => history.push("/profile"))
       .catch((err) => {
         setError(err);
       });
@@ -24,7 +26,7 @@ export default function LoginPage() {
 
   return (
     <>
-      {error && <Alert message="Login failed" type="error" />}
+      {error && <Alert message={"Login failed:" + error} type="error" />}
       <br />
       <Form onFinish={onSubmit} {...layout}>
         <Form.Item label="Email" name="email">
