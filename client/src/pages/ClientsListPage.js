@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Table, Avatar, Button } from "antd";
-import { Link } from "react-router-dom";
-import { UserAddOutlined, UserOutlined } from "@ant-design/icons";
+import { Table, Button } from "antd";
+import { Link, useHistory } from "react-router-dom";
+import { UserAddOutlined } from "@ant-design/icons";
 import ClientService from "../service/ClientService";
 
 export default function ClientsPage() {
+  const history = useHistory();
   const [clients, setClients] = useState([]);
   useEffect(() => {
     ClientService.getClients().then(setClients);
@@ -27,6 +28,14 @@ export default function ClientsPage() {
 
   return (
     <div>
+      <Button
+        onClick={() => history.push("/clients/new")}
+        type="primary"
+        icon={<UserAddOutlined />}
+        style={{ marginBottom: 16 }}
+      >
+        Add
+      </Button>
       <Table
         rowSelection={{
           type: "checkbox",
