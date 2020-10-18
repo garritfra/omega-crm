@@ -16,12 +16,6 @@ router.post("/", async (req, res) => {
   const client = new Client({ ...clientParams, created_by });
   await client
     .save()
-    .then(async (client) => {
-      const user = await User.findById(created_by);
-      user.clients.push(client.id);
-      user.save();
-      return client;
-    })
     .then((client) => {
       res.json(client);
     })
@@ -31,14 +25,14 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
 
-  const result = await Client.findById(id);
-  res.send(result);
+  const client = await Client.findOne({ _id: id, created_by: req.userId });
+  res.send(client);
 });
 
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
-  const result = await Client.deleteOne({ _id: id });
+  const result = await Client.deleteOne({ _id: id, created_by: req.userId });
   res.send(result);
 });
 
