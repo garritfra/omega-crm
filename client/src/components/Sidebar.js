@@ -1,15 +1,16 @@
 import { Menu } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 /**
  *
  * @param {{activeItem: string}} activeItem
  */
-export default function Sidebar({ activeItem }) {
+export default function Sidebar() {
+  const location = useLocation();
   return (
     <Menu
-      defaultSelectedKeys={[activeItem || "home"]}
+      defaultSelectedKeys={[location.pathname[0] || "home"]}
       mode="inline"
       theme="dark"
     >

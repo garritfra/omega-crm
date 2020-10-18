@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Layout, Breadcrumb, Empty } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Layout, Empty } from "antd";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ClientsListPage from "../pages/ClientsListPage";
 import RegisterPage from "../pages/RegisterPage";
 import NewClientPage from "../pages/NewClientPage";
@@ -9,6 +9,7 @@ import ClientPage from "../pages/ClientPage";
 
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import Breadcrumbs from "./Breadcrumbs";
 
 const { Footer, Sider } = Layout;
 export default function App() {
@@ -17,27 +18,6 @@ export default function App() {
   const onCollapse = (collapsed) => {
     setSidebarCollapsed(collapsed);
   };
-
-  const breadcrumbNameMap = {
-    "/": "Home",
-    "/clients": "Clients",
-    "/clients/*": "Detail",
-  };
-
-  const pathSnippets = window.location.pathname.split("/").filter((i) => i);
-  const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
-    return (
-      <Breadcrumb.Item key={url}>
-        <Link to={url}>{breadcrumbNameMap[url]}</Link>
-      </Breadcrumb.Item>
-    );
-  });
-  const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
-  ].concat(extraBreadcrumbItems);
 
   return (
     <Router>
@@ -50,13 +30,11 @@ export default function App() {
               margin: "16px",
             }}
           />
-          <Sidebar activeItem={pathSnippets[0]} />
+          <Sidebar />
         </Sider>
         <Layout>
           <Header />
-          <Breadcrumb style={{ marginLeft: "16px", marginTop: "24px" }}>
-            {breadcrumbItems}
-          </Breadcrumb>
+          <Breadcrumbs />
           <Layout.Content
             style={{
               background: "#fff",
