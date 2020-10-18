@@ -1,11 +1,14 @@
 import React from "react";
-import { Form, Input, Button, Card } from "antd";
+import { Form, Input, Button, Row, Col, Select, Tag } from "antd";
 import ClientService from "../service/ClientService";
 import { useHistory } from "react-router-dom";
+
+const { Option } = Select;
 
 export default function NewClientPage() {
   const history = useHistory();
   const onSubmit = (values) => {
+    console.log(values);
     ClientService.addClient(values).then((client) =>
       history.push("/clients/" + client.id)
     );
@@ -13,7 +16,7 @@ export default function NewClientPage() {
 
   const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 4 },
+    wrapperCol: { span: 16 },
   };
   const tailLayout = {
     wrapperCol: { offset: 8, span: 4 },
@@ -21,10 +24,49 @@ export default function NewClientPage() {
 
   return (
     <>
-      <Form onFinish={onSubmit} {...layout}>
-        <Form.Item label="Name" name="name">
-          <Input></Input>
-        </Form.Item>
+      <Form onFinish={onSubmit}>
+        <Row gutter={16}>
+          <Col>
+            <Form.Item label="Name" name="name" required="true">
+              <Input type="name"></Input>
+            </Form.Item>
+          </Col>
+          <Col>
+            <Form.Item label="Email" name="email">
+              <Input type="email"></Input>
+            </Form.Item>
+          </Col>
+          <Col>
+            <Form.Item label="status" name="status">
+              <Select>
+                <Option value="potential">
+                  <Tag color="default">Potential</Tag>
+                </Option>
+                <Option value="active">
+                  <Tag color="success">Active</Tag>
+                </Option>
+                <Option value="on_hold">
+                  <Tag color="purple">On Hold</Tag>
+                </Option>
+                <Option value="inavtive">
+                  <Tag color="error">Inactive</Tag>
+                </Option>
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col>
+            <Form.Item label="Address" name="address">
+              <Input.TextArea></Input.TextArea>
+            </Form.Item>
+          </Col>
+          <Col>
+            <Form.Item label="Telephone" name="telephone">
+              <Input type="tel"></Input>
+            </Form.Item>
+          </Col>
+        </Row>
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
             Submit
