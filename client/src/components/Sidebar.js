@@ -1,5 +1,6 @@
 import { Menu } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 
 /**
  *
@@ -13,10 +14,10 @@ export default function Sidebar({ activeItem }) {
       theme="dark"
     >
       <Menu.Item key="home">
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </Menu.Item>
       <Menu.Item key="clients">
-        <a href="/clients">Clients</a>
+        <Link to="/clients">Clients</Link>
       </Menu.Item>
     </Menu>
   );
