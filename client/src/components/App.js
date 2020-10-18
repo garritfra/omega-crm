@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu, notification, Card } from "antd";
+import { Layout, Menu, notification, Card, Breadcrumb } from "antd";
+import { Link, withRouter } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
@@ -64,16 +65,7 @@ export default function App() {
             )}
           </Menu>
         </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            background: "#fff",
-            minHeight: 280,
-          }}
-        >
-          <Navigation />
-        </Content>
+        <Navigation />
         <Footer style={{ textAlign: "center" }}>
           Omega CRM ©2020 Created by Garrit Franke
         </Footer>
