@@ -1,5 +1,5 @@
 import { Menu } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 /**
@@ -10,7 +10,7 @@ export default function Sidebar() {
   const location = useLocation();
   return (
     <Menu
-      defaultSelectedKeys={[location.pathname[0] || "home"]}
+      defaultSelectedKeys={[location.pathname.split("/")[1] || "home"]}
       mode="inline"
       theme="dark"
     >
