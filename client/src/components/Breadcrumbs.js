@@ -7,6 +7,7 @@ export default function Breadcrumbs() {
   const breadcrumbNameMap = {
     "/": "Home",
     "/clients": "Clients",
+    "/clients/new": "New",
     "/clients/*": "Detail",
   };
 
