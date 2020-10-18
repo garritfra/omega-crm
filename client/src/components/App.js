@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Menu, notification } from "antd";
+import { Layout, Menu, notification, Card } from "antd";
 
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
@@ -68,6 +68,7 @@ export default function App() {
           style={{
             margin: "24px 16px",
             padding: 24,
+            background: "#fff",
             minHeight: 280,
           }}
         >

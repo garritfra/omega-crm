@@ -32,4 +32,14 @@ export default {
       })
       .then((data) => data as Client);
   },
+
+  getClientById(id: String): Promise<Client> {
+    return axios
+      .get(basepath + "/clients/" + id)
+      .then((res) => res.data)
+      .then((client) => {
+        return { ...client, id: client._id };
+      })
+      .then((client) => client as Client);
+  },
 };

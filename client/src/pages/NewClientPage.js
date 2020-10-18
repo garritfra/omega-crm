@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Card } from "antd";
 import ClientService from "../service/ClientService";
 
 export default function NewClientPage() {
@@ -18,15 +18,17 @@ export default function NewClientPage() {
   };
 
   return (
-    <Form onFinish={onSubmit} {...layout}>
-      <Form.Item label="Name" name="name">
-        <Input></Input>
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <>
+      <Form onFinish={onSubmit} {...layout}>
+        <Form.Item label="Name" name="name">
+          <Input></Input>
+        </Form.Item>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 }
