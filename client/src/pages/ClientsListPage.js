@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { List, Avatar, Button } from "antd";
+import { Table, Avatar, Button } from "antd";
 import { Link } from "react-router-dom";
 import { UserAddOutlined, UserOutlined } from "@ant-design/icons";
 import ClientService from "../service/ClientService";
@@ -10,33 +10,32 @@ export default function ClientsPage() {
     ClientService.getClients().then(setClients);
   }, []);
 
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "id",
+      render: (id) => (
+        <Link to={"/clients/" + id}>
+          {
+            /* TODO: is there a simpler way? */
+            clients.filter((c) => c.id == id)[0].name
+          }
+        </Link>
+      ),
+    },
+  ];
+
   return (
     <div>
-      <List
-        dataSource={clients}
-        itemLayout="horizontal"
-        header={
-          <>
-            <h2>Clients</h2>
-            <Button
-              type="primary"
-              href="/clients/new"
-              icon={<UserAddOutlined />}
-            >
-              New
-            </Button>
-          </>
-        }
-        renderItem={(item) => (
-          <List.Item>
-            <List.Item.Meta
-              avatar={<Avatar icon={<UserOutlined />} />}
-              title={<Link to={"/clients/" + item.id}>{item.name}</Link>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            />
-          </List.Item>
-        )}
-      ></List>
+      <Table
+        rowSelection={{
+          type: "checkbox",
+        }}
+        columns={columns}
+        dataSource={clients.map((client) => {
+          return { ...client, key: client.id };
+        })}
+      />
     </div>
   );
 }
