@@ -1,9 +1,21 @@
 const mongoose = require("mongoose");
 
+const event = new mongoose.Schema({
+  eventType: {
+    type: String,
+    required: true,
+    enum: ["status_changed", "created"],
+  },
+  value: mongoose.Schema.Types.Mixed,
+});
+
 const schema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String },
-  status: { type: String },
+  events: {
+    type: [event],
+    default: [],
+  },
   address: { type: String },
   telephone: { type: String },
   created_by: {
@@ -13,4 +25,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Client", schema);
+const Client = mongoose.model("Client", schema);
+
+module.exports = Client;
