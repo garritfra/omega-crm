@@ -1,0 +1,6 @@
+{
+  "potential": { "color": "default", "text": "Potential" },
+  "active": { "color": "success", "text": "Active" },
+  "on_hold": { "color": "purple", "text": "On Hold" },
+  "inactive": { "color": "error", "text": "Inactive" }
+}

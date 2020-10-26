@@ -9,20 +9,16 @@ import {
   Row,
   Col,
 } from "antd";
+
+import statusTagMap from "../util/statusTagMap.json";
 import ClientService from "../service/ClientService";
+import StatusTimeline from "../components/StatusTimeline";
 
 export default function ClientPage({ id }) {
   const [client, setClient] = useState({});
   useEffect(() => {
     ClientService.getClientById(id).then(setClient);
   }, []);
-
-  const statusTagMap = {
-    potential: { color: "default", text: "Potential" },
-    active: { color: "success", text: "Active" },
-    on_hold: { color: "purple", text: "On Hold" },
-    inactive: { color: "error", text: "Inactive" },
-  };
 
   return (
     <>
@@ -60,23 +56,7 @@ export default function ClientPage({ id }) {
         </Row>
         <Row>
           <Col span={16}>
-            <Timeline mode="left">
-              <Timeline.Item label="04.10.2020">
-                Status changed: <Tag color="error">Inactive</Tag>
-              </Timeline.Item>
-              <Timeline.Item label="03.10.2020">
-                Status changed: <Tag color="purple">On Hold</Tag>
-              </Timeline.Item>
-              <Timeline.Item label="03.10.2020">
-                Project added: Foo Bar
-              </Timeline.Item>
-              <Timeline.Item label="02.10.2020">
-                Status changed: <Tag color="success">Active</Tag>
-              </Timeline.Item>
-              <Timeline.Item label="01.10.2020">
-                Status changed: <Tag color="default">Potential</Tag>
-              </Timeline.Item>
-            </Timeline>
+            {client.events ? <StatusTimeline events={client.events} /> : <></>}
           </Col>
           <Col span={8}></Col>
         </Row>
