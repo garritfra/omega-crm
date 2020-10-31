@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Timeline,
+  Select,
   Tag,
   Space,
   List,
@@ -10,15 +10,25 @@ import {
   Col,
 } from "antd";
 
-import statusTagMap from "../util/statusTagMap.json";
 import ClientService from "../service/ClientService";
 import StatusTimeline from "../components/StatusTimeline";
 
 export default function ClientPage({ id }) {
   const [client, setClient] = useState({});
+
   useEffect(() => {
-    ClientService.getClientById(id).then(setClient);
+    ClientService.getClientById(id).then((client) => {
+      console.log(client);
+      setClient(client);
+    });
   }, []);
+
+  const updateStatus = (value) => {
+    ClientService.updateStatus(client.id, value).then(() => {
+      setClient({ ...client, status: value });
+      window.location.reload();
+    });
+  };
 
   return (
     <>
@@ -31,14 +41,22 @@ export default function ClientPage({ id }) {
               <List.Item actions={[client.id]}>Identifier:</List.Item>
               <List.Item
                 actions={[
-                  (() =>
-                    statusTagMap[client.status] ? (
-                      <Tag color={statusTagMap[client.status].color}>
-                        {statusTagMap[client.status].text}
-                      </Tag>
-                    ) : (
-                      <></>
-                    ))(),
+                  (() => (
+                    <Select value={client.status} onSelect={updateStatus}>
+                      <Select.Option value="potential">
+                        <Tag color="default">Potential</Tag>
+                      </Select.Option>
+                      <Select.Option value="active">
+                        <Tag color="success">Active</Tag>
+                      </Select.Option>
+                      <Select.Option value="on_hold">
+                        <Tag color="purple">On Hold</Tag>
+                      </Select.Option>
+                      <Select.Option value="inactive">
+                        <Tag color="error">Inactive</Tag>
+                      </Select.Option>
+                    </Select>
+                  ))(),
                 ]}
               >
                 Status:

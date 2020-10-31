@@ -42,4 +42,11 @@ export default {
       })
       .then((client) => client as Client);
   },
+
+  updateStatus(id: String, status: String): Promise<String> {
+    return axios.post(basepath + "/clients/" + id + "/events", {
+      eventType: "status_changed",
+      value: status,
+    });
+  },
 };
