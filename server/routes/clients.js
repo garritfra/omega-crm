@@ -77,4 +77,14 @@ router.patch("/:id", async (req, res) => {
   res.send(result);
 });
 
+router.post("/:id/events", async (req, res) => {
+  const id = req.params.id;
+
+  const client = await Client.findById(id);
+
+  client.events.push({ ...req.body });
+
+  res.send(await client.save());
+});
+
 module.exports = router;
