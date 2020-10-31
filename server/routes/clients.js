@@ -53,9 +53,9 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
 
   const client = await Client.findOne({ _id: id, created_by: req.userId });
-  const status = client.events.filter(
-    (event) => event.eventType == "status_changed"
-  )[0];
+  const status = client.events
+    .filter((event) => event.eventType == "status_changed")
+    .reverse()[0];
 
   if (status) res.json({ ...client.toJSON(), status: status.value });
   else {
@@ -67,6 +67,13 @@ router.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
   const result = await Client.deleteOne({ _id: id, created_by: req.userId });
+  res.send(result);
+});
+
+router.patch("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const result = await Client.findByIdAndUpdate(id, req.body);
   res.send(result);
 });
 
