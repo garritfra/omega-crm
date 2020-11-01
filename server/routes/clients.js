@@ -93,8 +93,11 @@ router.post("/:id/events", async (req, res) => {
  * Body should contain array of id strings
  */
 router.delete("/", async (req, res) => {
+  console.debug(req);
   if (!(req.body instanceof Array)) {
-    return res.status(400).send("Body must contain array of indices");
+    return res
+      .status(400)
+      .send("Body must contain array of indices but got: " + req.body);
   }
   res.send(await Client.remove({ _id: req.body }));
 });

@@ -49,4 +49,13 @@ export default {
       value: status,
     });
   },
+
+  deleteMany(ids: String[]): Promise<any> {
+    console.log("To delete:", ids);
+    return axios({
+      method: "delete",
+      url: basepath + "/clients",
+      data: ids,
+    });
+  },
 };
