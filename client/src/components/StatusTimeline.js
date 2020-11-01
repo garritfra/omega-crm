@@ -8,13 +8,17 @@ export default function StatusTimeline({ events }) {
     switch (event.eventType) {
       case "status_changed":
         return (
-          <Timeline.Item label="04.10.2020">
+          <Timeline.Item label={new Date(event.createdAt).toUTCString()}>
             Status changed:
             <Tag color={statusTagMap[event.value].color}>{event.value}</Tag>
           </Timeline.Item>
         );
       case "created":
-        return <Timeline.Item label="01.01.1970">Created</Timeline.Item>;
+        return (
+          <Timeline.Item label={new Date(event.createdAt).toUTCString()}>
+            Created
+          </Timeline.Item>
+        );
       default:
         break;
     }

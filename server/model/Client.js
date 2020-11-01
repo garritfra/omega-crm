@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
 
-const event = new mongoose.Schema({
-  eventType: {
-    type: String,
-    required: true,
-    enum: ["status_changed", "created"],
+const event = new mongoose.Schema(
+  {
+    eventType: {
+      type: String,
+      required: true,
+      enum: ["status_changed", "created"],
+    },
+    value: mongoose.Schema.Types.Mixed,
   },
-  value: mongoose.Schema.Types.Mixed,
-});
+  { timestamps: true }
+);
 
 const schema = new mongoose.Schema({
   name: { type: String, required: true },
