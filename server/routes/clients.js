@@ -87,4 +87,16 @@ router.post("/:id/events", async (req, res) => {
   res.send(await client.save());
 });
 
+/**
+ * Delete many clients
+ *
+ * Body should contain array of id strings
+ */
+router.delete("/", async (req, res) => {
+  if (!(req.body instanceof Array)) {
+    return res.status(400).send("Body must contain array of indices");
+  }
+  res.send(await Client.remove({ _id: req.body }));
+});
+
 module.exports = router;
