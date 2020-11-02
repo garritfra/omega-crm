@@ -9,6 +9,7 @@ export default function Breadcrumbs() {
     "/clients": "Clients",
     "/clients/new": "New",
     "/clients/*": "Detail",
+    "/projects": "Projects",
   };
 
   const pathSnippets = location.pathname.split("/").filter((i) => i);

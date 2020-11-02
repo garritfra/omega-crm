@@ -20,6 +20,9 @@ export default function Sidebar() {
       <Menu.Item key="clients">
         <Link to="/clients">Clients</Link>
       </Menu.Item>
+      <Menu.Item key="projects">
+        <Link to="/projects">Projects</Link>
+      </Menu.Item>
     </Menu>
   );
 }

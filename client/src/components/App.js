@@ -10,6 +10,7 @@ import ClientPage from "../pages/ClientPage";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Breadcrumbs from "./Breadcrumbs";
+import ProjectsListPage from "../pages/ProjectsListPage";
 
 const { Footer, Sider } = Layout;
 export default function App() {
@@ -49,6 +50,9 @@ export default function App() {
               </Route>
               <Route exact path="/clients">
                 <ClientsListPage />
+              </Route>
+              <Route exact path="/projects">
+                <ProjectsListPage />
               </Route>
               <Route exact path="/clients/new">
                 <NewClientPage />
