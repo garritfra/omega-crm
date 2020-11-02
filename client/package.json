@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "npm test && parcel build public/index.html",
+    "build": "parcel build public/index.html --public-url ./",
     "test": "jest --coverage"
   },
   "author": "Garrit Franke",
