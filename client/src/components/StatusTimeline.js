@@ -9,7 +9,7 @@ export default function StatusTimeline({ events }) {
       case "status_changed":
         return (
           <Timeline.Item label={new Date(event.createdAt).toUTCString()}>
-            Status changed:{" "}
+            Status:{" "}
             <Tag color={statusTagMap[event.value].color}>{event.value}</Tag>
           </Timeline.Item>
         );
