@@ -6,6 +6,15 @@ All in one client relationship solution for freelancers.
 
 Omega CRM is still in early development. It is not yet deployed, but can be self-hosted. Pull requests are always welcome!
 
+### Todo
+
+- [ ] Projects per client
+- [ ] Financial values of clients
+- [ ] Data Import/Export (any standardized formats?)
+- [ ] Dashboard
+- [ ] Project Templates
+- [ ] Proper UI/UX
+
 ## Setup
 
 To deploy a Omega CRM backend and frontend, follow the instructions in `server/` and `client/` respectively.
