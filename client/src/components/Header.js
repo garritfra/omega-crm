@@ -17,7 +17,7 @@ export default function Head() {
   const onLogout = () => {
     notification.error({
       message: "Not yet implemented",
-      description: "To log out, please clear the cookies",
+      description: "To log out, please clear the cookies.",
     });
   };
 
