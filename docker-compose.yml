@@ -19,6 +19,9 @@ services:
     restart: always
     ports:
       - 8080:8080
+    environment:
+      AUTH_SECRET: mysecretl
+      DATABASE_URL: mongodb://root:example@mongo/omega?retryWrites=true&w=majority
     networks:
       - omega
 
@@ -27,6 +30,8 @@ services:
     restart: always
     ports:
       - 80:80
+    environment:
+      API_BASE_PATH: http://server:8080
     networks:
       - omega
 networks:
