@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "parcel build public/index.html --public-url ./",
+    "build": "parcel build public/index.html --public-url './' --no-minify --no-cache",
     "test": "jest --coverage"
   },
   "author": "Garrit Franke",
