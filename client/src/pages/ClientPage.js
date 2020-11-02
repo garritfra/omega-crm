@@ -66,14 +66,9 @@ export default function ClientPage({ id }) {
               <List.Item actions={[client.telephone]}>Telephone:</List.Item>
             </List>
           </Col>
-          <Col>
-            <Statistic title="Total Billed" value={3125} suffix="€" />
-            <Statistic title="Total payed" value={2400} suffix="€" />
-            <Statistic title="Total Balance" value={3125 - 2400} suffix="€" />
-          </Col>
         </Row>
         <Row>
-          <Col span={16}>
+          <Col span={24}>
             {client.events ? <StatusTimeline events={client.events} /> : <></>}
           </Col>
           <Col span={8}></Col>
