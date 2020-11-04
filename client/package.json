@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "parcel build public/index.html --public-url './' --no-minify --no-cache",
+    "build": "sh ./build.sh",
     "test": "jest --coverage"
   },
   "author": "Garrit Franke",
@@ -31,6 +31,7 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "jest": "^24.9.0",
     "parcel": "^1.12.4",
+    "terser": "^5.3.8",
     "typescript": "^4.0.3"
   }
 }
