@@ -13,4 +13,4 @@ terser \
     --toplevel \
     -- dist/src.*.js > dist/app.js
 
-sed -E -i "" 's/<script src=\"[\.\/]?\/src\.(.+)\"><\/script>/<script src=\"app\.js\"><\/script>/g' dist/index.html
+sed -E -i"" 's/<script src=\"[\.\/]?\/src\.(.+)\"><\/script>/<script src=\"app\.js\"><\/script>/g' dist/index.html
