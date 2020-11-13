@@ -10,6 +10,12 @@ app.use(require("body-parser").json());
 
 app.use(require("cors")());
 
+// Logging Middleware
+app.use((req, res, next) => {
+  console.log(new Date().toUTCString(), req.method, req.path);
+  next();
+});
+
 // Authorization middleware
 app.use((req, res, next) => {
   if (req.path === "/auth/register" || req.path === "/auth/login")
