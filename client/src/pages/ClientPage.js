@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Select,
-  Tag,
-  Space,
-  List,
-  Typography,
-  Statistic,
-  Row,
-  Col,
-} from "antd";
+import { Select, Tag, Space, List, Typography, Row, Col } from "antd";
+import { useHistory } from "react-router";
 
 import ClientService from "../service/ClientService";
 import StatusTimeline from "../components/StatusTimeline";
 
 export default function ClientPage({ id }) {
   const [client, setClient] = useState({});
+  const history = useHistory();
 
   useEffect(() => {
     ClientService.getClientById(id).then((client) => {
@@ -26,7 +19,7 @@ export default function ClientPage({ id }) {
   const updateStatus = (value) => {
     ClientService.updateStatus(client.id, value).then(() => {
       setClient({ ...client, status: value });
-      window.location.reload();
+      history.go(0);
     });
   };
 
