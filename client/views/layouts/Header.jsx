@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Menu, notification } from "antd";
 
 import UserService from "../../service/UserService.js";
 
-const { Header } = Layout;
 export default function Head() {
   const [username, setUsername] = useState("");
 
