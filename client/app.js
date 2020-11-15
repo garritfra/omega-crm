@@ -26,13 +26,13 @@ app.use("/landing", require("./routes/landing"));
 app.use("/auth", require("./routes/auth"));
 
 app.use((req, res, next) => {
-  if (!req.token) res.redirect("/landing");
+  const token = req.cookies.token;
+  req.token = token;
   next();
 });
 
 app.use((req, res, next) => {
-  const token = req.cookies.token;
-  req.token = token;
+  if (!req.token) res.redirect("/landing");
   next();
 });
 
