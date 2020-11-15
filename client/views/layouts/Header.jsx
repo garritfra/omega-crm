@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
-export default function Head({ user }) {
-  const [username, setUsername] = useState("");
+export default function Head() {
+  const user = useContext(UserContext);
 
   const onLogout = () => {
     notification.error({
