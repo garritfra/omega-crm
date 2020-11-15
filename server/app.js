@@ -1,14 +1,24 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
 const app = express();
 
-app.use(require("body-parser").json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(require("express-form-data").parse());
 
 app.use(require("cors")());
+
+app.use((req, res, next) => {
+  console.log(req.query);
+  req.body = { ...req.body, ...req.query };
+  next();
+});
 
 // Logging Middleware
 app.use((req, res, next) => {

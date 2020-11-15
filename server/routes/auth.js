@@ -33,7 +33,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   console.debug("New login attempt:", req.body.email);
   const { email, password } = req.body;
-
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -50,7 +49,7 @@ router.post("/login", async (req, res) => {
   );
 
   console.debug("Login success for userId:", user.id);
-  res.json({ status: "success", token, id: user.id });
+  res.cookie("token", token).redirect(req.query.redirect);
 });
 
 router.get("/profile", async (req, res) => {
