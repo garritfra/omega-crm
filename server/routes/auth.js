@@ -49,7 +49,9 @@ router.post("/login", async (req, res) => {
   );
 
   console.debug("Login success for userId:", user.id);
-  res.cookie("token", token).redirect(req.query.redirect);
+  if (req.query.redirect)
+    return res.cookie("token", token).redirect(req.query.redirect);
+  else return res.json({ status: "success", token, id: user.id });
 });
 
 router.get("/profile", async (req, res) => {
