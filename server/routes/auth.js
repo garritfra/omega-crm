@@ -18,16 +18,17 @@ router.post("/register", async (req, res) => {
 
   const user = new User({ email, full_name, password: hashedPassword });
 
-  user
+  const result = await user
     .save()
     .then((user) => {
       user.password = undefined;
-      res.status(201).json(user);
     })
     .catch((err) => {
       console.log(err);
-      res.status(400).json(err);
     });
+
+  if (req.query.redirect) return res.redirect(req.query.redirect);
+  else return res.json({ status: "success", token, id: user.id });
 });
 
 router.post("/login", async (req, res) => {
