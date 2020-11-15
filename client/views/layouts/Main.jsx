@@ -7,6 +7,7 @@ export default function ({ user, children }) {
     <UserContext.Provider value={user}>
       <head>
         <link rel="stylesheet" href="/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="/styles.css"></link>
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
       </head>
