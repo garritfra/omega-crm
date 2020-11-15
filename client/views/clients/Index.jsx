@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "./layouts/Main";
+import Layout from "../layouts/Main";
 
 export default function Clients({ clients }) {
   const clientViews = clients.map((client) => {

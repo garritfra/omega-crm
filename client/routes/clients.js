@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
       })
     );
 
-  res.render("Clients", {
+  res.render("clients/Index", {
     clients,
   });
 });
