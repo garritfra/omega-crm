@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
     });
 
   if (req.query.redirect) return res.redirect(req.query.redirect);
-  else return res.json({ status: "success", token, id: user.id });
+  else return res.json({ status: "success", token, id: result.id });
 });
 
 router.post("/login", async (req, res) => {
