@@ -38,7 +38,7 @@ export default function Head() {
         <ul class="navbar-nav ml-auto">
           {user ? (
             <li class="nav-item">
-              <a class="nav-link" href="/auth/login">
+              <a class="nav-link" href="/auth/logout">
                 {user.name} <span class="sr-only">(current)</span>
               </a>
             </li>
