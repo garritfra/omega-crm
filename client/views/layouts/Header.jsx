@@ -4,15 +4,8 @@ import UserContext from "../../contexts/UserContext";
 export default function Head() {
   const user = useContext(UserContext);
 
-  const onLogout = () => {
-    notification.error({
-      message: "Not yet implemented",
-      description: "To log out, please clear the cookies.",
-    });
-  };
-
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light container">
       <a class="navbar-brand" href="/">
         Ωmega
       </a>
