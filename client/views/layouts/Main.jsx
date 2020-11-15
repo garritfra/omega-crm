@@ -11,7 +11,7 @@ export default function (props) {
       </head>
       <body>
         <Header></Header>
-        <div className="container">{props.children}</div>
+        <div className="container mt-3">{props.children}</div>
       </body>
     </>
   );
