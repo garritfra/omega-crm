@@ -17,10 +17,8 @@ export default function Clients({ clients, user }) {
     <Layout user={user}>
       <div className="row">
         <div className="col-4">
-          <a href="/clients/new">
-            <button onClick="console.log('asd')" className="btn btn-primary">
-              New Client
-            </button>
+          <a href="/clients/new" className="btn btn-outline-dark btn-block">
+            New Client
           </a>
         </div>
         <div className="col-8">

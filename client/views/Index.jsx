@@ -8,10 +8,21 @@ export default function Index({ user }) {
         <h1 className="display-4">Welcome back, {user.name?.split(" ")[0]}!</h1>
         <p class="lead">Thanks for testing out the Ωmega alpha.</p>
         <hr class="my-4"></hr>
-        <p>Features currently include:</p>
-        <a class="btn btn-primary btn-sm" href="/clients" role="button">
-          Manage Clients
-        </a>
+        <div className="d-flex flex-column">
+          <a
+            className="btn btn-light btn-sm mb-2"
+            href="/clients"
+            role="button"
+          >
+            Manage Clients
+          </a>
+          <a
+            className="btn btn-danger btn-sm"
+            href="https://lists.sr.ht/~garritfra/omega"
+          >
+            Thoughts, bugs, questions, ideas?
+          </a>
+        </div>
       </div>
     </Layout>
   );
