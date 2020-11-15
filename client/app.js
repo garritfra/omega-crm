@@ -23,9 +23,6 @@ app.engine(
 
 app.use(require("cookie-parser")());
 
-app.use("/landing", require("./routes/landing"));
-app.use("/auth", require("./routes/auth"));
-
 // Attach user
 app.use((req, res, next) => {
   const token = req.cookies.token;
@@ -33,9 +30,12 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/landing", require("./routes/landing"));
+app.use("/auth", require("./routes/auth"));
+
 // Redirect if not authenticated
 app.use((req, res, next) => {
-  if (!req.user) res.redirect("/landing");
+  if (!req.user.token) return res.redirect("/landing");
   next();
 });
 
