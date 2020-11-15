@@ -8,7 +8,11 @@ export default function Clients({ clients, user }) {
         href={"/clients/" + client.id}
         className="list-group-item list-group-item-action"
       >
-        {client.name}
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{client.name}</h5>
+          <small>{client.status}</small>
+        </div>
+        <p class="mb-1">{client.email}</p>
       </a>
     );
   });

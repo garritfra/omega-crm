@@ -42,7 +42,7 @@ export default function Clients({ user }) {
             </div>
             <div class="form-group">
               <label for="status">Current Status</label>
-              <select class="form-control" id="status">
+              <select class="form-control" id="status" name="status">
                 <option value="potential">Potential</option>
                 <option value="active">Active</option>
                 <option value="on_hold">On Hold</option>
