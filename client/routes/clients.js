@@ -27,4 +27,13 @@ router.get("/new", async (req, res) => {
   });
 });
 
+router.get("/:id", async (req, res) => {
+  const client = await axios
+    .get(basePath + "/clients/" + req.params.id, {
+      headers: { Authorization: "Bearer " + req.cookies.token },
+    })
+    .then((r) => r.data);
+  res.send(client);
+});
+
 module.exports = router;

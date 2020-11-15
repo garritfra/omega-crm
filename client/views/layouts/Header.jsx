@@ -14,7 +14,7 @@ export default function Head() {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">
-        Navbar
+        Ωmega
       </a>
       <button
         class="navbar-toggler"
