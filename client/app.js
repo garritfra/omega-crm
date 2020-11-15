@@ -29,7 +29,7 @@ app.use("/auth", require("./routes/auth"));
 // Attach user
 app.use((req, res, next) => {
   const token = req.cookies.token;
-  req.user = jwt.decode(token);
+  req.user = { ...jwt.decode(token), token };
   next();
 });
 

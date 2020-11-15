@@ -15,7 +15,6 @@ app.use(require("express-form-data").parse());
 app.use(require("cors")());
 
 app.use((req, res, next) => {
-  console.log(req.query);
   req.body = { ...req.body, ...req.query };
   next();
 });
@@ -32,10 +31,18 @@ app.use((req, res, next) => {
     return next();
 
   const authHeader = req.header("Authorization");
-  if ((authHeader || "").split(" ")[0] !== "Bearer")
-    return res.status(401).send("Invalid token");
 
-  const token = authHeader.replace("Bearer ", "");
+  let token = authHeader?.replace("Bearer ", "");
+
+  // Try to get token if request is from frontend
+  if (!token) {
+    token = req.cookies?.token;
+  }
+
+  // Try to get token from body
+  if (!token) {
+    token = req.body.token;
+  }
 
   if (!token) return res.status(401).send("Invalid token");
 

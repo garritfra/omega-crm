@@ -44,7 +44,8 @@ router.post("/", async (req, res) => {
   await client
     .save()
     .then((client) => {
-      res.json(client);
+      if (req.body.redirect) res.redirect(req.body.redirect);
+      else res.json(client);
     })
     .catch((err) => res.status(400).send(err));
 });

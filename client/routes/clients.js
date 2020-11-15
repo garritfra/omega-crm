@@ -21,4 +21,10 @@ router.get("/", async (req, res) => {
   });
 });
 
+router.get("/new", async (req, res) => {
+  res.render("clients/New", {
+    user: req.user,
+  });
+});
+
 module.exports = router;
