@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-export default function (props) {
+export default function ({ user, children }) {
   return (
     <>
       <head>
@@ -10,8 +10,8 @@ export default function (props) {
         <script src="/bootstrap.min.js"></script>
       </head>
       <body>
-        <Header></Header>
-        <div className="container mt-3">{props.children}</div>
+        <Header user={user}></Header>
+        <div className="container mt-3">{children}</div>
       </body>
     </>
   );

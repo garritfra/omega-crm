@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../../service/UserService.js";
-
-export default function Head() {
+export default function Head({ user }) {
   const [username, setUsername] = useState("");
 
   const onLogout = () => {
@@ -35,6 +33,28 @@ export default function Head() {
               Clients <span class="sr-only">(current)</span>
             </a>
           </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {user ? (
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/login">
+                {user.name} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          ) : (
+            <>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/login">
+                  Login <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/register">
+                  Register <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

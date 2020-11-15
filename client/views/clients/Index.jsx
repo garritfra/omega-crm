@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../layouts/Main";
 
-export default function Clients({ clients }) {
+export default function Clients({ clients, user }) {
   const clientViews = clients.map((client) => {
     return (
       <a
@@ -14,7 +14,7 @@ export default function Clients({ clients }) {
   });
 
   return (
-    <Layout>
+    <Layout user={user}>
       <div className="row">
         <div className="col-4">
           <a href="/clients/new">

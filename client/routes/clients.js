@@ -6,7 +6,7 @@ const basePath = process.env.API_BASE_PATH;
 router.get("/", async (req, res) => {
   const clients = await axios
     .get(basePath + "/clients", {
-      headers: { Authorization: "Bearer " + req.token },
+      headers: { Authorization: "Bearer " + req.cookies.token },
     })
     .then((response) => response.data)
     .then((clients) =>
@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
 
   res.render("clients/Index", {
     clients,
+    user: req.user,
   });
 });
 

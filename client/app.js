@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
@@ -25,14 +26,16 @@ app.use(require("cookie-parser")());
 app.use("/landing", require("./routes/landing"));
 app.use("/auth", require("./routes/auth"));
 
+// Attach user
 app.use((req, res, next) => {
   const token = req.cookies.token;
-  req.token = token;
+  req.user = jwt.decode(token);
   next();
 });
 
+// Redirect if not authenticated
 app.use((req, res, next) => {
-  if (!req.token) res.redirect("/landing");
+  if (!req.user) res.redirect("/landing");
   next();
 });
 
