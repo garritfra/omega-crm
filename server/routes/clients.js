@@ -10,9 +10,9 @@ router.get("/", async (req, res) => {
     (clients) => {
       return clients
         .map((client) => {
-          const status = client.events.filter(
-            (event) => event.eventType == "status_changed"
-          )[0];
+          const status = client.events
+            .filter((event) => event.eventType == "status_changed")
+            .reverse()[0];
           if (status) return { ...client.toJSON(), status: status.value };
           else return { ...client.toJSON(), status: "" };
         })
