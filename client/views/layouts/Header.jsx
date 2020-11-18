@@ -32,7 +32,8 @@ export default function Head() {
           {user ? (
             <li class="nav-item">
               <a class="nav-link" href="/auth/logout">
-                {user.name} <span class="sr-only">(current)</span>
+                Logged in as {user.name} - Log Out{" "}
+                <span class="sr-only">(current)</span>
               </a>
             </li>
           ) : (
