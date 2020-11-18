@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { timeStamp } = require("console");
 
 const event = new mongoose.Schema(
   {
@@ -12,21 +13,24 @@ const event = new mongoose.Schema(
   { timestamps: true }
 );
 
-const schema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String },
-  events: {
-    type: [event],
-    default: [],
+const schema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String },
+    events: {
+      type: [event],
+      default: [],
+    },
+    address: { type: String },
+    telephone: { type: String },
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
   },
-  address: { type: String },
-  telephone: { type: String },
-  created_by: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
-});
+  { timestamps: true }
+);
 
 const Client = mongoose.model("Client", schema);
 

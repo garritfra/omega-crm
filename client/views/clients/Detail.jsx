@@ -3,7 +3,6 @@ import Layout from "../layouts/Main";
 import moment from "moment";
 
 export default function Detail({ client, user }) {
-  console.table(client);
   const timelineComponent = client.events
     .reverse()
     .slice(0, 2)

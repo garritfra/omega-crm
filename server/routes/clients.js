@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const Client = require("../model/Client");
 const User = require("../model/User");
@@ -7,13 +8,15 @@ const User = require("../model/User");
 router.get("/", async (req, res) => {
   const client = await Client.find({ created_by: req.userId }).map(
     (clients) => {
-      return clients.map((client) => {
-        const status = client.events.filter(
-          (event) => event.eventType == "status_changed"
-        )[0];
-        if (status) return { ...client.toJSON(), status: status.value };
-        else return { ...client.toJSON(), status: "" };
-      });
+      return clients
+        .map((client) => {
+          const status = client.events.filter(
+            (event) => event.eventType == "status_changed"
+          )[0];
+          if (status) return { ...client.toJSON(), status: status.value };
+          else return { ...client.toJSON(), status: "" };
+        })
+        .sort((a, b) => moment(b.updatedAt).subtract(a.updatedAt));
     }
   );
   res.json(client);
