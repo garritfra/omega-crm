@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const mongoose = require("mongoose");
 
 const Client = require("../model/Client");
 const User = require("../model/User");
@@ -52,6 +53,11 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).send("Client not found");
+    return;
+  }
 
   const client = await Client.findOne({ _id: id, created_by: req.userId });
   const status = client.events

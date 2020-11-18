@@ -42,4 +42,8 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/clients", require("./routes/clients"));
 
+app.get("/*", (req, res) => {
+  res.render("404");
+});
+
 app.listen(process.env.PORT || 80);
