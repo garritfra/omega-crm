@@ -28,14 +28,35 @@ export default function Detail({ client, user }) {
 
   return (
     <Layout user={user}>
-      <h4 className="display-4">
-        {client.name}{" "}
-        <span className="badge badge-pill badge-dark text-capitalize">
-          {client.status.replace("_", " ")}
-        </span>
-      </h4>
+      <div className="row">
+        <div className="col col-8">
+          <h4 className="display-4">{client.name}</h4>
+          <h4 className="lead text-muted">{client.email}</h4>
+        </div>
+        <div className="col col-4">
+          <div class="card border-dark">
+            <div class="card-body d-flex flex-column">
+              <div className="d-flex justify-content-between">
+                <span>Status</span>
+                <div>
+                  <span className="card-text badge badge-pill badge-dark text-capitalize">
+                    {client.status.replace("_", " ")}
+                  </span>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between">
+                <span>Address</span>
+                <span>{client.address || "-"}</span>
+              </div>
+              <div className="d-flex justify-content-between">
+                <span>Tel.</span>
+                <span>{client.telephone || "-"}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <h4 className="lead text-muted">{client.email}</h4>
       <div className="row mt-4">
         {timelineComponent}
         <div className="col-sm-2 d-flex align-items-center">
