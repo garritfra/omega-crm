@@ -18,7 +18,7 @@ export default function Detail({ client, user }) {
                 {moment(event.createdAt).fromNow()}
               </h6>
               <p className="card-text text-capitalize">
-                {event.value.replace("_", " ")}
+                {event.value?.replace("_", " ")}
               </p>
             </div>
           </div>
