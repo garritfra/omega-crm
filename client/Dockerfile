@@ -1,14 +1,12 @@
-FROM node:15-alpine
+FROM node:15.0.1-alpine3.11
 
-# https://stackoverflow.com/a/59471030/9046809
-RUN apk add --update python make g++\
-    && rm -rf /var/cache/apk/*
+WORKDIR /usr/src/app
 
-COPY . /app
-WORKDIR /app
-RUN npm ci && npm run build
+COPY package*.json ./
 
-FROM nginx:alpine
-COPY --from=0 /app/dist /usr/share/nginx/html
-COPY ./conf/conf.d/default.conf /etc/nginx/conf.d/default.conf
+RUN npm ci
+
+COPY . .
+
 EXPOSE 80
+CMD [ "node", "app.js" ]
