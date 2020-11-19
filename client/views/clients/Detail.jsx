@@ -57,7 +57,7 @@ export default function Detail({ client, user }) {
         </div>
       </div>
 
-      <div className="row mt-4">
+      <div className="jumbotron jumbotron-fluid row mt-4 py-3 mx-0">
         {timelineComponent}
         <div className="col-sm-2 d-flex align-items-center">
           <a className="btn btn-light" href={`/clients/${client.id}/timeline`}>
