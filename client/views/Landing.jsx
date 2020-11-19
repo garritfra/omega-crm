@@ -6,8 +6,8 @@ export default function Index() {
     <Layout>
       <div className="jumbotron">
         <h1 className="display-4">Ωmega</h1>
-        <p class="lead">The last CRM you will ever need.</p>
-        <hr class="my-4"></hr>
+        <p className="lead">The last CRM you will ever need.</p>
+        <hr className="my-4"></hr>
         <div className="d-flex flex-column">
           <a
             className="btn btn-primary btn-sm mb-2"

@@ -14,7 +14,7 @@ export default function Detail({ client, user }) {
               <h5 className="card-title text-capitalize">
                 {event.eventType.replace("_", " ")}
               </h5>
-              <h6 class="card-subtitle mb-2 text-muted">
+              <h6 className="card-subtitle mb-2 text-muted">
                 {moment(event.createdAt).fromNow()}
               </h6>
               <p className="card-text text-capitalize">
@@ -30,7 +30,7 @@ export default function Detail({ client, user }) {
     <Layout user={user}>
       <h4 className="display-4">
         {client.name}{" "}
-        <span class="badge badge-pill badge-dark text-capitalize">
+        <span className="badge badge-pill badge-dark text-capitalize">
           {client.status.replace("_", " ")}
         </span>
       </h4>

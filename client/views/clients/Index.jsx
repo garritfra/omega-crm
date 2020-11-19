@@ -8,13 +8,13 @@ export default function Clients({ clients, user }) {
         href={"/clients/" + client.id}
         className="list-group-item list-group-item-action"
       >
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{client.name}</h5>
+        <div className="d-flex w-100 justify-content-between">
+          <h5 className="mb-1">{client.name}</h5>
           <small className="text-capitalize">
             {client.status.replace("_", " ")}
           </small>
         </div>
-        <p class="mb-1">{client.email}</p>
+        <p className="mb-1">{client.email}</p>
       </a>
     );
   });

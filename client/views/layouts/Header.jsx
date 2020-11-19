@@ -5,12 +5,12 @@ export default function Head() {
   const user = useContext(UserContext);
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-light container">
-      <a class="navbar-brand" href="/">
+    <nav className="navbar navbar-expand-lg navbar-light container">
+      <a className="navbar-brand" href="/">
         Ωmega
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -18,34 +18,34 @@ export default function Head() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="/clients">
-              Clients <span class="sr-only">(current)</span>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            <a className="nav-link" href="/clients">
+              Clients <span className="sr-only">(current)</span>
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul className="navbar-nav ml-auto">
           {user ? (
-            <li class="nav-item">
-              <a class="nav-link" href="/auth/logout">
+            <li className="nav-item">
+              <a className="nav-link" href="/auth/logout">
                 Logged in as {user.name} - Log Out{" "}
-                <span class="sr-only">(current)</span>
+                <span className="sr-only">(current)</span>
               </a>
             </li>
           ) : (
             <>
-              <li class="nav-item">
-                <a class="nav-link" href="/auth/login">
-                  Login <span class="sr-only">(current)</span>
+              <li className="nav-item">
+                <a className="nav-link" href="/auth/login">
+                  Login <span className="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/auth/register">
-                  Register <span class="sr-only">(current)</span>
+              <li className="nav-item">
+                <a className="nav-link" href="/auth/register">
+                  Register <span className="sr-only">(current)</span>
                 </a>
               </li>
             </>
