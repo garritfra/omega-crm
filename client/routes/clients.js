@@ -28,14 +28,34 @@ router.get("/new", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const client = await axios.get(basePath + "/clients/" + req.params.id, {
-    headers: { Authorization: "Bearer " + req.cookies.token },
-  }).then(res => res.data);
+  const client = await axios
+    .get(basePath + "/clients/" + req.params.id, {
+      headers: { Authorization: "Bearer " + req.cookies.token },
+    })
+    .then((res) => res.data);
 
   if (res.status === 404) {
     res.render("404");
   } else {
-    res.render("clients/Detail", {user: req.user, client });
+    res.render("clients/Detail", { user: req.user, client });
+  }
+});
+
+router.get("/:id/timeline", async (req, res) => {
+  const client = await axios
+    .get(basePath + "/clients/" + req.params.id, {
+      headers: { Authorization: "Bearer " + req.cookies.token },
+    })
+    .then((res) => res.data);
+
+  if (res.status === 404) {
+    res.render("404");
+  } else {
+    res.render("clients/Timeline", {
+      user: req.user,
+      events: client.events,
+      client,
+    });
   }
 });
 

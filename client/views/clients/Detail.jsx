@@ -1,12 +1,10 @@
 import React from "react";
 import Layout from "../layouts/Main";
 import moment from "moment";
+import ClientDetailHeader from "../components/ClientDetailHeader";
 
-const basePath = process.env.API_BASE_PATH;
-const frontendBasePath = process.env.FRONTEND_BASE_PATH;
-
-export default function Detail({ client, user }) {
-  const timelineComponent = client.events
+export default function Detail(props = { client, user }) {
+  const timelineComponent = props.client.events
     .reverse()
     .slice(0, 2)
     .map((event) => {
@@ -28,79 +26,17 @@ export default function Detail({ client, user }) {
         </div>
       );
     });
-  console.debug(client);
   return (
-    <Layout user={user}>
-      <div className="row">
-        <div className="col col-8">
-          <h4 className="display-4">{client.name}</h4>
-          <h4 className="lead text-muted">{client.email}</h4>
-        </div>
-        <div className="col col-4">
-          <div class="card border-dark">
-            <div class="card-body d-flex flex-column">
-              <div className="d-flex justify-content-between">
-                <span>Address</span>
-                <span>{client.address || "-"}</span>
-              </div>
-              <div className="d-flex justify-content-between">
-                <span>Tel.</span>
-                <span>{client.telephone || "-"}</span>
-              </div>
-              <form
-                method="post"
-                action={
-                  basePath +
-                  "/clients/" +
-                  client._id +
-                  "/events" +
-                  "?token=" +
-                  user.token +
-                  "&redirect=" +
-                  frontendBasePath +
-                  "/clients/" +
-                  client._id
-                }
-                class="inline"
-              >
-                <div className="d-flex justify-content-between">
-                  <span>Status</span>
-                  <select
-                    className="card-text text-capitalize"
-                    name="value"
-                    defaultValue={client.status}
-                  >
-                    <option value="potential" className="card-text">
-                      Potential
-                    </option>
-                    <option value="active" className="card-text">
-                      Active
-                    </option>
-                    <option value="inactive" className="card-text">
-                      Inactive
-                    </option>
-                    <option value="on_hold" className="card-text">
-                      On Hold
-                    </option>
-                  </select>
-                </div>
-                <button
-                  type="submit"
-                  class="badge badge-primary align-self-end"
-                >
-                  Update
-                </button>
-                <input type="hidden" name="eventType" value="status_changed" />
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+    <Layout user={props.user}>
+      <ClientDetailHeader {...props} />
 
       <div className="jumbotron jumbotron-fluid row mt-4 py-3 mx-0">
         {timelineComponent}
         <div className="col-sm-2 d-flex align-items-center">
-          <a className="btn btn-light" href={`/clients/${client._id}/timeline`}>
+          <a
+            className="btn btn-light"
+            href={`/clients/${props.client._id}/timeline`}
+          >
             View Full Timeline
           </a>
         </div>
