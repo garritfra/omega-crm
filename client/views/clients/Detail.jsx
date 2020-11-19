@@ -9,7 +9,7 @@ export default function Detail({ client, user }) {
     .map((event) => {
       return (
         <div className="col-sm-5">
-          <div className="card">
+          <div className="card h-100">
             <div className="card-body">
               <h5 className="card-title text-capitalize">
                 {event.eventType.replace("_", " ")}
