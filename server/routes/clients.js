@@ -5,15 +5,18 @@ const moment = require("moment");
 const Client = require("../model/Client");
 const User = require("../model/User");
 
+const getStatus = (client) =>
+  client.events
+    .filter((event) => event.eventType == "status_changed")
+    .reverse()[0].value;
+
 router.get("/", async (req, res) => {
   const client = await Client.find({ created_by: req.userId }).map(
     (clients) => {
       return clients
         .map((client) => {
-          const status = client.events
-            .filter((event) => event.eventType == "status_changed")
-            .reverse()[0];
-          if (status) return { ...client.toJSON(), status: status.value };
+          const status = getStatus(client);
+          if (status) return { ...client.toJSON(), status };
           else return { ...client.toJSON(), status: "" };
         })
         .sort((a, b) => moment(b.updatedAt).subtract(a.updatedAt));
@@ -92,9 +95,13 @@ router.post("/:id/events", async (req, res) => {
 
   const client = await Client.findById(id);
 
-  client.events.push({ ...req.body });
+  if (getStatus(client) !== req.body.value) {
+    client.events.push({ ...req.body });
+    await client.save();
+  }
 
-  res.send(await client.save());
+  if (req.body.redirect) res.redirect(req.body.redirect);
+  else res.json(client);
 });
 
 /**
