@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 const app = express();
 
@@ -7,7 +8,6 @@ require("dotenv").config();
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
-app.use("/", express.static(__dirname + "/public"));
 app.engine(
   "jsx",
   require("express-react-views").createEngine({
@@ -47,3 +47,11 @@ app.get("/*", (req, res) => {
 });
 
 app.listen(process.env.PORT || 80);
+
+if (process.env.NODE_ENV === "production") {
+  const options = {
+    cert: fs.readFileSync("./certs/fullchain.pem"),
+    key: fs.readFileSync("./certs/privkey.pem"),
+  };
+  https.createServer(options, app).listen(8443);
+}
