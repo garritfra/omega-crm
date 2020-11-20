@@ -9,6 +9,10 @@ export default function ({ user, children }) {
         <title>Ωmega</title>
         <link rel="stylesheet" href="/bootstrap.min.css"></link>
         <link rel="stylesheet" href="/styles.css"></link>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
       </head>

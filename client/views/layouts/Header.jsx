@@ -5,7 +5,7 @@ export default function Head() {
   const user = useContext(UserContext);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light container">
+    <nav className="navbar navbar-expand-md navbar-light container">
       <a className="navbar-brand" href="/">
         Ωmega
       </a>

@@ -22,12 +22,15 @@ export default function Clients({ clients, user }) {
   return (
     <Layout user={user}>
       <div className="row">
-        <div className="col-4">
-          <a href="/clients/new" className="btn btn-outline-dark btn-block">
+        <div className="col-md-4">
+          <a
+            href="/clients/new"
+            className="btn btn-outline-dark btn-block mb-3"
+          >
             New Client
           </a>
         </div>
-        <div className="col-8">
+        <div className="col-md-8">
           <div className="list-group">{clientViews}</div>
         </div>
       </div>
