@@ -52,12 +52,7 @@ export default function Clients({ user }) {
           <div className="col-lg-6">
             <div className="form-group">
               <label for="address">Address</label>
-              <input
-                type="address"
-                name="address"
-                className="form-control"
-                id="address"
-              />
+              <textarea name="address" className="form-control" id="address" />
             </div>
             <div className="form-group">
               <label for="telephone">Phone</label>

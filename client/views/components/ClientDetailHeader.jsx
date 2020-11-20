@@ -17,7 +17,7 @@ export default function ClientDetailHeader({ client, user }) {
           <div class="card-body d-flex flex-column">
             <div className="d-flex justify-content-between">
               <span>Address</span>
-              <span>{client.address || "-"}</span>
+              <span className="text-right">{client.address || "-"}</span>
             </div>
             <div className="d-flex justify-content-between">
               <span>Tel.</span>
