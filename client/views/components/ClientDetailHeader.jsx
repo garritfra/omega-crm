@@ -8,11 +8,11 @@ const frontendBasePath = process.env.FRONTEND_BASE_PATH;
 export default function ClientDetailHeader({ client, user }) {
   return (
     <div className="row">
-      <div className="col col-8">
+      <div className="col col-md-8">
         <h4 className="display-4">{client.name}</h4>
         <h4 className="lead text-muted">{client.email}</h4>
       </div>
-      <div className="col col-4">
+      <div className="col col-md-4">
         <div class="card border-dark">
           <div class="card-body d-flex flex-column">
             <div className="d-flex justify-content-between">

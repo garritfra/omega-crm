@@ -9,7 +9,7 @@ export default function Detail(props = { client, user }) {
     .slice(0, 2)
     .map((event) => {
       return (
-        <div className="col-sm-5">
+        <div className="col-sm-5 my-1">
           <div className="card h-100">
             <div className="card-body">
               <h5 className="card-title text-capitalize">
@@ -30,11 +30,11 @@ export default function Detail(props = { client, user }) {
     <Layout user={props.user}>
       <ClientDetailHeader {...props} />
 
-      <div className="jumbotron jumbotron-fluid row mt-4 py-3 mx-0">
+      <div className="jumbotron jumbotron-fluid row mt-4 py-1 mx-0">
         {timelineComponent}
         <div className="col-sm-2 d-flex align-items-center">
           <a
-            className="btn btn-light"
+            className="btn btn-light my-2"
             href={`/clients/${props.client._id}/timeline`}
           >
             View Full Timeline
