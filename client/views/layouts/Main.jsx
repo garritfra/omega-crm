@@ -6,6 +6,7 @@ export default function ({ user, children }) {
   return (
     <UserContext.Provider value={user}>
       <head>
+        <title>Ωmega</title>
         <link rel="stylesheet" href="/bootstrap.min.css"></link>
         <link rel="stylesheet" href="/styles.css"></link>
         <script src="/jquery.min.js"></script>
