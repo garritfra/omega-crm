@@ -51,12 +51,15 @@ app.get("/*", (req, res) => {
 
 if (process.env.NODE_ENV === "production") {
   console.log("Starting server in production mode");
+
   const options = {
     cert: fs.readFileSync("./certs/fullchain.pem"),
     key: fs.readFileSync("./certs/privkey.pem"),
   };
+
   https.createServer(options, app).listen(443);
 } else {
   console.log("Starting server in debug mode");
-  app.listen(process.env.PORT || 80);
 }
+
+app.listen(process.env.PORT || 80);
