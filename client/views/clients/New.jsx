@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layouts/Main";
-import { base } from "../../../server/model/User";
 
 const basePath = process.env.API_BASE_PATH;
 const frontendBasePath = process.env.FRONTEND_BASE_PATH;
