@@ -55,7 +55,7 @@ if (process.env.NODE_ENV === "production") {
     cert: fs.readFileSync("./certs/fullchain.pem"),
     key: fs.readFileSync("./certs/privkey.pem"),
   };
-  https.createServer(options, app).listen(8443);
+  https.createServer(options, app).listen(443);
 } else {
   console.log("Starting server in debug mode");
   app.listen(process.env.PORT || 80);
